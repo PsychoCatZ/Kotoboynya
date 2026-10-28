@@ -1,0 +1,9 @@
+import { RotateCcw, Home, Skull, Clock, Swords, HeartCrack, Feather, Trophy } from 'lucide-react'
+import type { RunStats } from '../game/types'
+import { WEAPONS } from '../game/content/weapons'
+
+export function Results({ run, favoriteWeapon, onRestart, onMenu }: { run: RunStats; favoriteWeapon?: string; onRestart: () => void; onMenu: () => void }) {
+  const minutes = Math.floor(run.elapsed / 60), seconds = Math.floor(run.elapsed % 60)
+  return <div className="results-screen overlay-screen"><div className="results-inner"><p className="overline">{run.victory ? 'УТИНЫЙ ВОПРОС ЗАКРЫТ' : 'ЗАБЕГ ОКОНЧЕН'}</p><h2>{run.victory ? 'Кот был не в настроении.' : 'Кот устал. Утки — нет.'}</h2><div className="results-kills"><Skull size={38}/><span>УТОК УНИЧТОЖЕНО:</span><b>{run.kills.toLocaleString('ru-RU')}</b></div><div className="results-grid"><Stat icon={<Trophy/>} label="Достигнутая волна" value={`${run.wave} / 20`}/><Stat icon={<Clock/>} label="Время забега" value={`${minutes}:${seconds.toString().padStart(2,'0')}`}/><Stat icon={<Swords/>} label="Нанесено урона" value={Math.round(run.damage).toLocaleString('ru-RU')}/><Stat icon={<HeartCrack/>} label="Получено урона" value={Math.round(run.taken).toLocaleString('ru-RU')}/><Stat icon={<Feather/>} label="Собрано перьев" value={run.feathers.toLocaleString('ru-RU')}/><Stat icon={<Swords/>} label="Любимое оружие" value={favoriteWeapon ? WEAPONS[favoriteWeapon as keyof typeof WEAPONS].name : 'Пистолет'}/></div><div className="results-actions"><button className="button button-primary" onClick={onRestart}><RotateCcw size={19}/> Ещё забег</button><button className="button button-secondary" onClick={onMenu}><Home size={19}/> Главное меню</button></div></div></div>
+}
+function Stat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) { return <div className="result-stat"><span>{icon}{label}</span><b>{value}</b></div> }

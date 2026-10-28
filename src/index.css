@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #14211c;
+  --ink-2: #1d2e26;
+  --panel: #21352b;
+  --paper: #eef0dd;
+  --muted: #a9b5a7;
+  --acid: #d7e46b;
+  --yellow: #f0cf5b;
+  --orange: #e8844f;
+  --red: #d65d4b;
+  --line: rgba(222, 232, 199, .16);
+  --display: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  --body: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--paper);
+  background: var(--ink);
+  font-family: var(--body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-width: 320px; min-height: 100%; }
+body { min-height: 100dvh; overflow-x: hidden; }
+button, input { font: inherit; }
+button { color: inherit; }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--acid); outline-offset: 3px; }
+button:disabled { cursor: not-allowed; }
+::selection { background: var(--acid); color: var(--ink); }
